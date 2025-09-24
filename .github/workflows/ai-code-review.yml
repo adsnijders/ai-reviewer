@@ -2,7 +2,7 @@ name: AI Code Review # Name of the workflow
 
 on: # Defines what will trigger the workflow
   pull_request: # Indicates that it will trigger on PR
-    branches: master # Indicates that a PR on branch "master" will trigger the workflow
+    branches: main # Indicates that a PR on branch "main" will trigger the workflow
 
 jobs: # "List" of actions that the workflow will execute
   ai-review: # Name of the job
