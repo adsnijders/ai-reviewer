@@ -1,6 +1,6 @@
 import os
 import openai
-from github import Github
+from github import Github, Auth
 
 # Function that fetches all the changed files from the PR
 def get_pr_files(pr):
@@ -52,7 +52,7 @@ def main():
     pr_number = int(os.environ["PR_NUMBER"])
 
     # Get the files that were changed in the PR
-    github = Github(token)
+    github = Github(auth=Auth.Token(token))
     repo = github.get_repo(repo_name)
     pr = repo.get_pull(pr_number)
     files = get_pr_files(pr)
