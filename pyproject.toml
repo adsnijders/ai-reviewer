@@ -1,0 +1,13 @@
+[project]
+name = "ai-code-reviewer"
+version = "0.1.0"
+description = "Trying to implement a LLM to review the codebase of a PR."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.0.0",
+    "PyGithub"
+]
+
+[project.optional-dependencies]
+ci = []

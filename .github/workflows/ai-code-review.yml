@@ -1,0 +1,29 @@
+name: AI Code Review # Name of the workflow
+
+on: # Defines what will trigger the workflow
+  pull_request: # Indicates that it will trigger on PR
+    branches: master # Indicates that a PR on branch "master" will trigger the workflow
+
+jobs: # "List" of actions that the workflow will execute
+  ai-review: # Name of the job
+    runs-on: ubuntu-latest 
+
+    steps:
+      # Step 1: Clone the repository
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Step 2: Install dependencies
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies"
+          pip install .[ci]     
+
+      # Step 3: 
+      - name: Run AI Reviewer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: python src/ai_reviewer/main.py
